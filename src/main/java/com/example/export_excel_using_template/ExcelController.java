@@ -14,13 +14,11 @@ import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.entity.TemplateExportParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ExcelController {
     
     @RequestMapping(value = "download-excel")
-    @ResponseBody
     public void downloadExcel(HttpServletResponse response) {
         //use Excel Template
         // String filePath = FilePath.name("sample.xls");
