@@ -107,6 +107,10 @@ public class ExportExcelUtil {
         font.setFontName("Arial");
         HSSFCellStyle style = workbook.createCellStyle();
         style.setFont(font);
+        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
         // style.setWrapText(true);
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
@@ -118,6 +122,10 @@ public class ExportExcelUtil {
         font.setFontName("Arial");
         HSSFCellStyle style = workbook.createCellStyle();
         style.setFont(font);
+        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
         // style.setWrapText(true);
         // style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
