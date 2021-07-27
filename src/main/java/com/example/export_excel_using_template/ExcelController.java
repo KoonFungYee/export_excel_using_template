@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.entity.TemplateExportParams;
@@ -60,5 +61,50 @@ public class ExcelController {
                 System.out.println(e);
             }
         }
+    }
+
+    @RequestMapping(value = "create-excel")
+    public void selfCreateExcel(HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("generatedDate", "here");
+        List<List<String>> dataList = new ArrayList<List<String>>();
+        List<String> rowList = null;
+        for (int i = 0; i < 2; i++) {
+            rowList = new ArrayList<String>();
+            rowList.add("name " + "name " + "name "+ "name "+ "name "+ "name " + i);
+            rowList.add(BigDecimal.valueOf(i).setScale(2).toString());
+            dataList.add(rowList);
+        }
+        String fileName = "Result_Data";
+        String[] header = new String[]{"Name", "Amount"};
+        OutputStream out = null;
+        try{
+            response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition", "attachment;filename="+fileName+".xls");
+            out = response.getOutputStream();
+            Workbook wb = downloadExcel(fileName, header, dataList);;
+            wb.write(out);
+            out.flush();
+        }catch (Exception e){
+            System.out.println(e);
+        }finally {
+            try{
+                if(out!=null){
+                    out.close();
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+    }
+
+    private HSSFWorkbook downloadExcel(String fileName, String[] header, List<List<String>> dataList){
+        HSSFWorkbook wb = new HSSFWorkbook();
+        try{
+            ExportExcelUtil.createSheet(wb,0,fileName,fileName,header,dataList);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return wb;
     }
 }
